@@ -25,3 +25,9 @@ module "Private_Subnets" {
   public_subnet=module.Public_Subnets.public_subnet_ids[0]
   depends_on = [ module.Public_Subnets ]
 }
+module "Datasource_AMI" {
+  source = "./datasource_ami"
+  filter_names = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+  filter_virtuals = ["hvm"]
+  owners = ["099720109477"] # Canonical
+}
