@@ -17,5 +17,5 @@ variable "nginx_tag" {
   default = "nginx-proxy"
 }
 variable "instance_type" {
-  
+
 }

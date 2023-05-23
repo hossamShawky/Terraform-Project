@@ -5,8 +5,8 @@ resource "aws_instance" "nginx-proxy" {
   key_name                    = var.key_name
   associate_public_ip_address = true
   subnet_id                   = var.public_subnets_ids[count.index]
- instance_type=var.instance_type
- provisioner "local-exec" {
+  instance_type               = var.instance_type
+  provisioner "local-exec" {
     command = "echo ${self.public_ip} >> ./public_ips.txt"
   }
 

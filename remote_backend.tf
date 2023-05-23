@@ -1,8 +1,8 @@
 resource "aws_s3_bucket" "terraform-state-bucket" {
   bucket = "hossam-state-bucket"
   lifecycle {
-#    prevent_destroy = true
-# You Can Uncomment above line to prevent delete bucket
+    #    prevent_destroy = true
+    # You Can Uncomment above line to prevent delete bucket
   }
 }
 
@@ -14,9 +14,9 @@ resource "aws_s3_bucket_versioning" "enabled" {
 }
 
 resource "aws_dynamodb_table" "terraform-lockstate-dynamodb" {
-  name = "terraform-lockstate-dynamodb"
+  name         = "terraform-lockstate-dynamodb"
   billing_mode = "PAY_PER_REQUEST"
-  hash_key = "LockID"
+  hash_key     = "LockID"
 
   attribute {
     name = "LockID"
@@ -25,12 +25,12 @@ resource "aws_dynamodb_table" "terraform-lockstate-dynamodb" {
 }
 
 terraform {
-   backend "s3" {
-     bucket  = "hossam-state-bucket"
-     key     = "dev/terraform.tfstate"
-     region  = "us-east-1"
-     dynamodb_table = "terraform-lockstate-dynamodb"
-     encrypt = "true"
-   }
- }
+  backend "s3" {
+    bucket         = "hossam-state-bucket"
+    key            = "dev/terraform.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "terraform-lockstate-dynamodb"
+    encrypt        = "true"
+  }
+}
 

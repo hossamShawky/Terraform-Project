@@ -12,10 +12,10 @@ resource "aws_instance" "apache-server" {
   subnet_id                   = var.private_subnets_ids[count.index]
   instance_type               = var.instance_type
   user_data                   = data.template_file.apache_user_data.rendered
- provisioner "local-exec" {
+  provisioner "local-exec" {
     command = "echo ${self.private_ip} >> ./private_ips.txt"
   }
-    tags = {
+  tags = {
     Name = var.apache_tag
   }
 

@@ -4,7 +4,7 @@ variable "lb_name" {
 variable "lb_type" {
   default = "application"
 }
-variable "lb_security_gps" {type = list(string)}
+variable "lb_security_gps" { type = list(string) }
 variable "lb_subnets" {}
 variable "tg_name" {
   default = "private-TG"
