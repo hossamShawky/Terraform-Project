@@ -14,5 +14,5 @@ variable "destination" {
   type = string
 }
 variable "igw_id" {
-  
+
 }

@@ -1,26 +1,28 @@
 resource "aws_subnet" "public_subnets" {
-  count = length(var.public_cidrs)
-  cidr_block = var.public_cidrs[count.index]
-  vpc_id = var.vpc_id
-  availability_zone = var.availability_zones[count.index]  
+  count             = length(var.public_cidrs)
+  cidr_block        = var.public_cidrs[count.index]
+  vpc_id            = var.vpc_id
+  availability_zone = var.availability_zones[count.index]
   tags = {
-    "Name"= var.public_names[count.index]
+    "Name" = var.public_names[count.index]
   }
 }
 
 resource "aws_route_table" "public_Rtable" {
-  
+
   vpc_id = var.vpc_id
   route {
     cidr_block = var.destination
     gateway_id = var.igw_id
   }
-
+  tags = {
+    "Name" = "Public-RT"
+  }
 }
 
 resource "aws_route_table_association" "public_subnets_RT_Associate" {
-  count = length(var.public_cidrs)
-  subnet_id = aws_subnet.public_subnets[count.index].id 
+  count          = length(var.public_cidrs)
+  subnet_id      = aws_subnet.public_subnets[count.index].id
   route_table_id = aws_route_table.public_Rtable.id
 }
 

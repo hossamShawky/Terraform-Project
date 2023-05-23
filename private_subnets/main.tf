@@ -17,6 +17,10 @@ resource "aws_route_table" "private_Rtable" {
 
   }
 
+  tags = {
+    "Name" = "Public-RT"
+  }
+
 }
 
 resource "aws_route_table_association" "private_subnets_RT_Associate" {
