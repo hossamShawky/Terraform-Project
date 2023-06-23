@@ -18,7 +18,7 @@ resource "aws_route_table" "private_Rtable" {
   }
 
   tags = {
-    "Name" = "Public-RT"
+    "Name" = "Private-RT"
   }
 
 }
@@ -38,13 +38,13 @@ resource "aws_security_group" "private_security_gp" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = var.public_cidrs
   }
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = var.public_cidrs
   }
 
 

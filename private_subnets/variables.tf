@@ -10,6 +10,9 @@ variable "private_names" {
 variable "private_cidrs" {
   type = list(string)
 }
+variable "public_cidrs" {
+  type = list(string)
+}
 variable "destination" {
   type = string
 }
